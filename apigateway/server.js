@@ -41,7 +41,7 @@ var schema = new GraphQLSchema({
                 description: 'Get all BIMfo articles',
                 resolve: root => {
                     return axios
-                        .get('http://localhost:8081')
+                        .get('http://articleapi')
                         .then(resp => resp.data);
                 }
             },
@@ -55,7 +55,7 @@ var schema = new GraphQLSchema({
                 },
                 resolve: (root, args) => {
                     return axios
-                        .get(`http://localhost:8081/${args.id}`)
+                        .get(`http://articleapi/${args.id}`)
                         .then(resp => resp.data);
                 }
             }
@@ -63,12 +63,9 @@ var schema = new GraphQLSchema({
     })
 });
 
-app.use(
-    '/graphql',
-    graphqlHTTP({
-        schema: schema,
-        graphiql: true
-    })
-);
+app.use('/', graphqlHTTP({
+    schema: schema,
+    graphiql: true
+}));
 
 app.listen(80);

@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:id', function(req, res) {
-    var article = articles.filter(a => a.id === req.params.id).pop();
+    var article = articles.filter(a => a.id === +req.params.id).pop();
     res.send(article);
 });
 
