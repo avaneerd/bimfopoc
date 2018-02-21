@@ -1,0 +1,8 @@
+li {
+    line-height: 24px;
+}
+
+li:hover {
+    background: #dadada;
+    cursor: pointer;
+}

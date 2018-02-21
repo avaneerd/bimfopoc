@@ -1,0 +1,9 @@
+<ul>
+    <li *ngFor="let article of this.articles | async" (click)="this.selectedId = article.id">
+        {{ article.id }} - {{ article.name }}
+    </li>
+</ul>
+
+<app-article [articleId]="this.selectedId">
+
+</app-article>
