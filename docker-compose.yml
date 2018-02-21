@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  frontend:
+    build:
+      context: ./bimfofe
+    ports:
+     - 8080:80
+    networks:
+     - front-tier
+    depends_on:
+     - "apigateway"
+
+  apigateway:
+    build:
+      context: ./apigateway
+    depends_on:
+     - "articleapi"
+    networks:
+     - back-tier
+     - front-tier
+
+  articleapi:
+    build:
+      context: ./articleapi
+    networks:
+     - back-tier
+
+networks:
+  front-tier:
+  back-tier:
